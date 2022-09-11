@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eurobot-2022 Calc</title>
+    <link rel="shortcut icon" href="cropped-favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+
+    
+</head>
+<body>
+    <div class="main_block">
+        <h1>Eurobot 2023 Calc</h1>
+        <div class="container">
+            <div class="row">
+                    <form>
+                        <div class="col-md-9 col-sm-6 col-xs-12">
+                            <div class="mb-3">
+                                <label for="fineHelp" class="form-label">Штраф</label>
+                                <input type="number" class="form-control" id="fine_points_cnt" aria-describedby="fineHelp" value="0">
+                                <div id="fineHelp" class="form-text">Количество штрафных очков (<a href="#">Выбрать нарушения</a>)</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cakeLayersHelp" class="form-label">Количество слоёв</label>
+                                <input type="number" class="form-control" id="cake_layers_cnt" aria-describedby="cakeLayersHelp" value="0">
+                                <div id="cakeLayersHelp" class="form-text">Количество слоёв в тортах(<b>1 pnt</b>)</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="correctCakesHelp" class="form-label">Количество правильных тортов</label>
+                                <input type="number" class="form-control" id="correct_cakes_cnt" aria-describedby="correctCakesHelp" value="0">
+                                <div id="correctCakesHelp" class="form-text">Торты собранные по рецепту(<b>3 pnt</b>)</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="correctCakesHelp" class="form-label">Количество тортов с вишенкой</label>
+                                <input type="number" class="form-control" id="cakes_with_cherry" aria-describedby="correctCakesHelp" value="0">
+                                <div id="correctCakesHelp" class="form-text">Количество установленных вишенок(<b>4 pnt</b>)</div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="basketPlaced">
+                                <label class="form-check-label" for="basketPlaced">У команды есть корзина</label>
+                                <div id="basketPlaced" class="form-text">Команда установила корзину во время подготовки(<b>5 pnt</b>)</div>                            
+                            </div>
+                            <div class="mb-3">
+                                <label for="correctCakesHelp" class="form-label">Количество вишенок в корзине</label>
+                                <input type="number" class="form-control" id="cherries_in_basket_cnt" aria-describedby="correctCakesHelp" value="0">
+                                <div id="correctCakesHelp" class="form-text">Сколько вишенок было заброшено в корзину(<b>1 pnt</b>)</div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="backetCounterWorks">
+                                <label class="form-check-label" for="backetCounterWorks">Счётчик корзины правильно работает</label>
+                                <div id="backetCounterWorks" class="form-text">Счётчик на корзине показывает количество вишенок внутри неё(<b>5 pnt</b>)</div>                            
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="robotsReturn">
+                                <label class="form-check-label" for="robotsReturn">Роботы правильно вернулись</label>
+                                <div id="robotsReturn" class="form-text">В конце матча роботы находятся на своих местах(<b>15 pnt</b>)</div>                            
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="basketPlaced">
+                                <label class="form-check-label" for="basketPlaced">Весёлое действие</label>
+                                <div id="basketPlaced" class="form-text">Funny action(<b>5 pnt</b>)</div>                            
+                            </div>
+                            <div class="mb-3">
+                                <label for="correctCakesHelp" class="form-label">Прогноз</label>
+                                <input type="number" class="form-control" id="cherries_in_basket_cnt" aria-describedby="correctCakesHelp" value="0">
+                                <div id="correctCakesHelp" class="form-text">бонус = 20 - abs(real - prediction)</div>
+                            </div>
+                            
+                        
+                            <button type="submit" class="btn btn-primary">Подсчёт</button>
+                            <a class="btn btn-warning" href="https://drive.google.com/file/d/1y6nUXu45HXQWbhdoGRR-2X-YBz6rDVDz/view" target="__blank" role="button">Правила</a>
+                            <button type="button" class="btn btn-danger">Отчистить форму</button>
+                        </div>
+                    </form>
+                </div>
+           
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+<script src="calculate.js"></script>
+</html>
