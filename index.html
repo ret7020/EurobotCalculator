@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eurobot-2022 Calc</title>
+    <title>Eurobot-2023 Calc</title>
     <link rel="shortcut icon" href="cropped-favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 
     
@@ -22,7 +23,8 @@
                             <div class="mb-3">
                                 <label for="fineHelp" class="form-label">Штраф</label>
                                 <input type="number" class="form-control" id="fine_points_cnt" aria-describedby="fineHelp" value="0">
-                                <div id="fineHelp" class="form-text">Количество штрафных очков (<a href="#">Выбрать нарушения</a>)</div>
+                                <div id="fineHelp" class="form-text">Количество штрафных очков (<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Выбрать нарушения</a>)</div>
+                                  
                             </div>
                             <div class="mb-3">
                                 <label for="cakeLayersHelp" class="form-label">Количество слоёв</label>
@@ -79,9 +81,58 @@
                 </div>
            
         </div>
-        
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Выбор штрафов</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="fine_0">
+                    <label class="form-check-label black" for="fine_0">Часть робота упала на поле</label>
+                    <div id="fine_0" class="form-text">20 pnt</div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="fine_1">
+                    <label class="form-check-label black" for="fine_1">Ухудшение поля или игровых элементов</label>
+                    <div id="fine_1" class="form-text">30 pnt</div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="fine_2">
+                    <label class="form-check-label black" for="fine_2">Нерабочая система предотвращения столкновений</label>
+                    <div id="fine_2" class="form-text">30 pnt</div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="fine_3">
+                    <label class="form-check-label black" for="fine_3">Некорректный старт</label>
+                    <div id="fine_3" class="form-text">50 pnt</div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="fine_4">
+                    <label class="form-check-label black" for="fine_4">Движение робота после окончания матча</label>
+                    <div id="fine_4" class="form-text">50 pnt</div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="fine_5">
+                    <label class="form-check-label black" for="fine_5">Черезмерное время подготовки</label>
+                    <div id="fine_5" class="form-text">50 pnt</div>
+                </div>
+                <label class="form-check-label black" for="fine_5">Итого: </label> <span id="fine_points_cnt">0</span>
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Ок</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <script src="calculate.js"></script>
 </body>
-<script src="calculate.js"></script>
+
 </html>

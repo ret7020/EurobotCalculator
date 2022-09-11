@@ -3,12 +3,6 @@
     width:500px;
     height:200px;
 }
-#artifact_in, #predicted, #artifact_opened, #obraz_raspr, #obraz_in_lag, #obraz_in_lag_sorted, #obraz_in_gal_sorted, #obraz_in_gal{
-    width: 50px;
-}
-#fine{
-    width: 187px;
-}
 input{
     margin-bottom: 10px;
 }
@@ -23,13 +17,6 @@ h1{
 label{
     color:  white;
 }
-result{
-    display: none;
-}
-#rules_link{
-    text-decoration: none;
-    color: lime;
-}
-#rules_link:hover{
-    color: #11ce11;
+label.black{
+    color: black;
 }
