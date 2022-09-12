@@ -68,12 +68,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="correctCakesHelp" class="form-label">Прогноз</label>
-                                <input type="number" class="form-control" id="cherries_in_basket_cnt" aria-describedby="correctCakesHelp" value="0">
+                                <input type="number" class="form-control" id="predicted_points" aria-describedby="correctCakesHelp" value="0">
                                 <div id="correctCakesHelp" class="form-text">бонус = 20 - abs(real - prediction)</div>
                             </div>
                             
                         
-                            <button type="submit" class="btn btn-primary">Подсчёт</button>
+                            <button type="button" class="btn btn-primary" onclick="visualize_points()">Подсчёт</button>
                             <a class="btn btn-warning" href="https://drive.google.com/file/d/1y6nUXu45HXQWbhdoGRR-2X-YBz6rDVDz/view" target="__blank" role="button">Правила</a>
                             <button type="button" class="btn btn-danger">Отчистить форму</button>
                         </div>
@@ -126,6 +126,26 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" onclick="apply_fines()" data-bs-dismiss="modal">Применить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="pointsCalculated" tabindex="-1" role="dialog" aria-labelledby="pointsCalculatedLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="pointsCalculatedLabel">Итоговые баллы</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="form-check-label black">Без бонуса: <span id="points_without_bonus">0</span></label> 
+                <label class="form-check-label black">Бонус: <span id="points_with_bonus">0</span></label> 
+                <label class="form-check-label black">Итого: <span id="points_final">0</span></label> 
+                </div>
+                
             </div>
           </div>
         </div>

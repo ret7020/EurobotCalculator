@@ -1,4 +1,4 @@
-points_inputs_ids = ["fine_points_cnt", "cake_layers_cnt", "correct_cakes_cnt", "cakes_with_cherry", "cherries_in_basket_cnt"];
+points_inputs_ids = ["cake_layers_cnt", "correct_cakes_cnt", "cakes_with_cherry", "cherries_in_basket_cnt"];
 checkboxes_ids = ["basketPlaced", "backetCounterWorks", "robotsReturn", "finalActionDone"];
 
 function calculate_points(){
@@ -13,8 +13,34 @@ function calculate_points(){
         let inp = document.getElementById(element);
         final_points_cnt += inp.checked * inp.dataset.points;
     });
+    let without_bonus = final_points_cnt;
+    
+    // Bonus
+    let bonus = 0;
+    if (document.getElementById("predicted_points").value != 0){
+        bonus = 20 - Math.abs(final_points_cnt - document.getElementById("predicted_points").value);
+        if (bonus < 0){
+            bonus = 0;
+        }
+    }
+    //console.log(bonus);
+    final_points_cnt += bonus + 1;
+    final_points_cnt -= parseInt(document.getElementById("fine_points_cnt").value);
+    if (final_points_cnt < 0){
+        final_points_cnt = 0;
+    }
+    without_bonus -= parseInt(document.getElementById("fine_points_cnt").value);
+    if (without_bonus < 0){
+        without_bonus = 0;
+    }
+    
+   
 
-    return final_points_cnt;
+    // Fines
+    //console.log(parseInt(document.getElementById("fine_points_cnt").value));
+    
+
+    return [final_points_cnt, without_bonus, bonus];
 }
 
 function calculate_fines(){
@@ -31,7 +57,13 @@ function apply_fines(){
 }
 
 function visualize_points(){
-    return 0;
+    const [final_points_cnt, without_bonus, bonus] = calculate_points();
+    var myModal = new bootstrap.Modal(document.getElementById('pointsCalculated'), {});
+    document.getElementById("points_without_bonus").innerText = without_bonus;
+    document.getElementById("points_with_bonus").innerText = bonus;
+    document.getElementById("points_final").innerText = final_points_cnt;
+    myModal.show();
+
 }
 
 //Events bindings
@@ -41,4 +73,4 @@ document.getElementById("fines_select_form").onchange = function(){
 document.getElementById("fineSelectModal").addEventListener('hide.bs.modal', function () {
     apply_fines();
 })
-  
+
