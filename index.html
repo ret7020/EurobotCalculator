@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,152 +8,184 @@
     <title>Eurobot-2023 Calc</title>
     <link rel="shortcut icon" href="cropped-favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
 
 
-    
+
 </head>
+
 <body>
-    <div class="main_block">
+    <div class="container">
         <h1>Eurobot 2023 Calc</h1>
-        <div class="container">
+        <form>
             <div class="row">
-                    <form>
-                        <div class="col-md-9 col-sm-6 col-xs-12">
-                            <div class="mb-3">
-                                <label for="fineHelp" class="form-label">Штраф</label>
-                                <input type="number" class="form-control" id="fine_points_cnt" aria-describedby="fineHelp" value="0" data-points-coeff=1>
-                                <div id="fineHelp" class="form-text">Количество штрафных очков (<a href="#" data-bs-toggle="modal" data-bs-target="#fineSelectModal">Выбрать нарушения</a>)</div>
-                                  
-                            </div>
-                            <div class="mb-3">
-                                <label for="cakeLayersHelp" class="form-label">Количество слоёв</label>
-                                <input type="number" class="form-control" id="cake_layers_cnt" aria-describedby="cakeLayersHelp" value="0" data-points-coeff=1>
-                                <div id="cakeLayersHelp" class="form-text">Количество слоёв в тортах(<b>1 pnt</b>)</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="correctCakesHelp" class="form-label">Количество правильных тортов</label>
-                                <input type="number" class="form-control" id="correct_cakes_cnt" aria-describedby="correctCakesHelp" value="0" data-points-coeff=3>
-                                <div id="correctCakesHelp" class="form-text">Торты собранные по рецепту(<b>3 pnt</b>)</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="correctCakesHelp" class="form-label">Количество тортов с вишенкой</label>
-                                <input type="number" class="form-control" id="cakes_with_cherry" aria-describedby="correctCakesHelp" value="0" data-points-coeff=4>
-                                <div id="correctCakesHelp" class="form-text">Количество установленных вишенок(<b>4 pnt</b>)</div>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="basketPlaced" data-points=5>
-                                <label class="form-check-label" for="basketPlaced">У команды есть корзина</label>
-                                <div id="basketPlaced" class="form-text">Команда установила корзину во время подготовки(<b>5 pnt</b>)</div>                            
-                            </div>
-                            <div class="mb-3">
-                                <label for="correctCakesHelp" class="form-label">Количество вишенок в корзине</label>
-                                <input type="number" class="form-control" id="cherries_in_basket_cnt" aria-describedby="correctCakesHelp" value="0" data-points-coeff=1>
-                                <div id="correctCakesHelp" class="form-text">Сколько вишенок было заброшено в корзину(<b>1 pnt</b>)</div>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="backetCounterWorks" data-points=5>
-                                <label class="form-check-label" for="backetCounterWorks">Счётчик корзины правильно работает</label>
-                                <div id="backetCounterWorks" class="form-text">Счётчик на корзине показывает количество вишенок внутри неё(<b>5 pnt</b>)</div>                            
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="robotsReturn" data-points=15>
-                                <label class="form-check-label" for="robotsReturn">Роботы правильно вернулись</label>
-                                <div id="robotsReturn" class="form-text">В конце матча роботы находятся на своих местах(<b>15 pnt</b>)</div>                            
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="finalActionDone" data-points=5>
-                                <label class="form-check-label" for="finalActionDone">Весёлое действие</label>
-                                <div id="finalActionDone" class="form-text">Funny action(<b>5 pnt</b>)</div>                            
-                            </div>
-                            <div class="mb-3">
-                                <label for="correctCakesHelp" class="form-label">Прогноз</label>
-                                <input type="number" class="form-control" id="predicted_points" aria-describedby="correctCakesHelp" value="0">
-                                <div id="correctCakesHelp" class="form-text">бонус = 20 - abs(real - prediction)</div>
-                            </div>
-                            
-                        
-                            <button type="button" class="btn btn-primary" onclick="visualize_points()">Подсчёт</button>
-                            <a class="btn btn-warning" href="https://drive.google.com/file/d/1y6nUXu45HXQWbhdoGRR-2X-YBz6rDVDz/view" target="__blank" role="button">Правила</a>
-                            <button type="button" class="btn btn-danger">Отчистить форму</button>
+                <div class="col-md-4 col-sm-6">
+                    <div class="mb-3">
+                        <label for="fineHelp" class="form-label">Штраф</label>
+                        <input type="number" class="form-control" id="fine_points_cnt" aria-describedby="fineHelp"
+                            value="0" data-points-coeff=1>
+                        <div id="fineHelp" class="form-text">Количество штрафных очков (<a href="#"
+                                data-bs-toggle="modal" data-bs-target="#fineSelectModal">Выбрать нарушения</a>)</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cakeLayersHelp" class="form-label">Количество слоёв</label>
+                        <input type="number" class="form-control" id="cake_layers_cnt" aria-describedby="cakeLayersHelp"
+                            value="0" data-points-coeff=1>
+                        <div id="cakeLayersHelp" class="form-text">Количество слоёв в тортах(<b>1 pnt</b>)</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="correctCakesHelp" class="form-label">Количество правильных тортов</label>
+                        <input type="number" class="form-control" id="correct_cakes_cnt"
+                            aria-describedby="correctCakesHelp" value="0" data-points-coeff=3>
+                        <div id="correctCakesHelp" class="form-text">Торты собранные по рецепту(<b>3 pnt</b>)</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="correctCakesHelp" class="form-label">Количество тортов с вишенкой</label>
+                        <input type="number" class="form-control" id="cakes_with_cherry"
+                            aria-describedby="correctCakesHelp" value="0" data-points-coeff=4>
+                        <div id="correctCakesHelp" class="form-text">Количество установленных вишенок(<b>4 pnt</b>)
                         </div>
-                    </form>
+                    </div>
+                    <div class="mb-3">
+                        <label for="correctCakesHelp" class="form-label">Количество вишенок в корзине</label>
+                        <input type="number" class="form-control" id="cherries_in_basket_cnt"
+                            aria-describedby="correctCakesHelp" value="0" data-points-coeff=1>
+                        <div id="correctCakesHelp" class="form-text">Сколько вишенок было заброшено в корзину(<b>1
+                                pnt</b>)</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="correctCakesHelp" class="form-label">Прогноз</label>
+                        <input type="number" class="form-control" id="predicted_points"
+                            aria-describedby="correctCakesHelp" value="0">
+                        <div id="correctCakesHelp" class="form-text">бонус = 20 - abs(real - prediction)</div>
+                    </div>
+
+
                 </div>
-           
-        </div>
-    </div>
-    <div class="modal fade" id="fineSelectModal" tabindex="-1" role="dialog" aria-labelledby="fineSelectModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="fineSelectModalLabel">Выбор штрафов</h5>
-
-            </div>
-            <div class="modal-body">
-                <form id="fines_select_form">
+                <div class="col-md-4 col-sm-6">
+                    <label for="correctCakesHelp" class="form-label">True/False</label>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="fine_0" data-fine-size="20">
-                        <label class="form-check-label black" for="fine_0">Часть робота упала на поле</label>
-                        <div id="fine_0" class="form-text">20 pnt</div>
+                        <input type="checkbox" class="form-check-input" id="basketPlaced" data-points=5>
+                        <label class="form-check-label" for="basketPlaced">У команды есть корзина</label>
+                        <div id="basketPlaced" class="form-text">Команда установила корзину во время подготовки(<b>5
+                                pnt</b>)</div>
+                    </div>
+              
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="backetCounterWorks" data-points=5>
+                        <label class="form-check-label" for="backetCounterWorks">Счётчик корзины правильно
+                            работает</label>
+                        <div id="backetCounterWorks" class="form-text">Счётчик на корзине показывает количество вишенок
+                            внутри неё(<b>5 pnt</b>)</div>
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="fine_1" data-fine-size="30">
-                        <label class="form-check-label black" for="fine_1">Ухудшение поля или игровых элементов</label>
-                        <div id="fine_1" class="form-text">30 pnt</div>
+                        <input type="checkbox" class="form-check-input" id="robotsReturn" data-points=15>
+                        <label class="form-check-label" for="robotsReturn">Роботы правильно вернулись</label>
+                        <div id="robotsReturn" class="form-text">В конце матча роботы находятся на своих местах(<b>15
+                                pnt</b>)</div>
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="fine_2" data-fine-size="30">
-                        <label class="form-check-label black" for="fine_2">Нерабочая система предотвращения столкновений</label>
-                        <div id="fine_2" class="form-text">30 pnt</div>
+                        <input type="checkbox" class="form-check-input" id="finalActionDone" data-points=5>
+                        <label class="form-check-label" for="finalActionDone">Весёлое действие</label>
+                        <div id="finalActionDone" class="form-text">Funny action(<b>5 pnt</b>)</div>
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="fine_3" data-fine-size="50">
-                        <label class="form-check-label black" for="fine_3">Некорректный старт</label>
-                        <div id="fine_3" class="form-text">50 pnt</div>
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="fine_4" data-fine-size="50">
-                        <label class="form-check-label black" for="fine_4">Движение робота после окончания матча</label>
-                        <div id="fine_4" class="form-text">50 pnt</div>
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="fine_5" data-fine-size="50">
-                        <label class="form-check-label black" for="fine_5">Черезмерное время подготовки</label>
-                        <div id="fine_5" class="form-text">50 pnt</div>
-                    </div>
-                    <label class="form-check-label black">Итого: </label> <span id="fine_points_cnt_preview">0</span>
-                </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" onclick="apply_fines()" data-bs-dismiss="modal">Применить</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="modal fade" id="pointsCalculated" tabindex="-1" role="dialog" aria-labelledby="pointsCalculatedLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="pointsCalculatedLabel">Итоговые баллы</h5>
-
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <label class="form-check-label black">Без бонуса: <span id="points_without_bonus">0</span></label> 
-                <label class="form-check-label black">Бонус: <span id="points_with_bonus">0</span></label> 
-                <label class="form-check-label black">Итого: <span id="points_final">0</span></label> 
+                   
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-0.5 col-sm-1"><button type="button" class="btn btn-primary" onclick="visualize_points()">Подсчёт</button></div>
+                <div class="col-md-1 col-sm-1"><a class="btn btn-light"
+                    href="https://drive.google.com/file/d/1y6nUXu45HXQWbhdoGRR-2X-YBz6rDVDz/view" target="__blank"
+                    role="button">Правила</a></div>
+                <div class="col-md-2 col-sm-1"><button type="button" class="btn btn-danger">Отчистить форму</button></div>
                 
             </div>
-          </div>
-        </div>
-      </div>
-      
+        </form>
+    </div>
+    <div class="modal fade" id="fineSelectModal" tabindex="-1" role="dialog" aria-labelledby="fineSelectModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fineSelectModalLabel">Выбор штрафов</h5>
 
-      <script src="calculate.js"></script>
+                </div>
+                <div class="modal-body">
+                    <form id="fines_select_form">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="fine_0" data-fine-size="20">
+                            <label class="form-check-label black" for="fine_0">Часть робота упала на поле</label>
+                            <div id="fine_0" class="form-text">20 pnt</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="fine_1" data-fine-size="30">
+                            <label class="form-check-label black" for="fine_1">Ухудшение поля или игровых
+                                элементов</label>
+                            <div id="fine_1" class="form-text">30 pnt</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="fine_2" data-fine-size="30">
+                            <label class="form-check-label black" for="fine_2">Нерабочая система предотвращения
+                                столкновений</label>
+                            <div id="fine_2" class="form-text">30 pnt</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="fine_3" data-fine-size="50">
+                            <label class="form-check-label black" for="fine_3">Некорректный старт</label>
+                            <div id="fine_3" class="form-text">50 pnt</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="fine_4" data-fine-size="50">
+                            <label class="form-check-label black" for="fine_4">Движение робота после окончания
+                                матча</label>
+                            <div id="fine_4" class="form-text">50 pnt</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="fine_5" data-fine-size="50">
+                            <label class="form-check-label black" for="fine_5">Черезмерное время подготовки</label>
+                            <div id="fine_5" class="form-text">50 pnt</div>
+                        </div>
+                        <label class="form-check-label black">Итого: </label> <span
+                            id="fine_points_cnt_preview">0</span>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="apply_fines()"
+                        data-bs-dismiss="modal">Применить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="pointsCalculated" tabindex="-1" role="dialog" aria-labelledby="pointsCalculatedLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pointsCalculatedLabel">Итоговые баллы</h5>
+
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <label class="form-check-label black">Без бонуса: <span
+                                id="points_without_bonus">0</span></label>
+                        <label class="form-check-label black">Бонус: <span id="points_with_bonus">0</span></label>
+                        <label class="form-check-label black">Итого: <span id="points_final">0</span></label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="calculate.js"></script>
 </body>
 
 </html>

@@ -34,8 +34,6 @@ function calculate_points(){
         without_bonus = 0;
     }
     
-   
-
     // Fines
     //console.log(parseInt(document.getElementById("fine_points_cnt").value));
     
