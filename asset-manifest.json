@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/EurobotCalculator/static/css/main.6eb31bca.css",
-    "main.js": "/EurobotCalculator/static/js/main.1ace82ca.js",
+    "main.css": "/EurobotCalculator/static/css/main.4f461206.css",
+    "main.js": "/EurobotCalculator/static/js/main.91555f1e.js",
     "static/js/787.d87d9dc6.chunk.js": "/EurobotCalculator/static/js/787.d87d9dc6.chunk.js",
     "static/media/map.png": "/EurobotCalculator/static/media/map.52fb1795308e6b1445e5.png",
     "index.html": "/EurobotCalculator/index.html",
-    "main.6eb31bca.css.map": "/EurobotCalculator/static/css/main.6eb31bca.css.map",
-    "main.1ace82ca.js.map": "/EurobotCalculator/static/js/main.1ace82ca.js.map",
+    "main.4f461206.css.map": "/EurobotCalculator/static/css/main.4f461206.css.map",
+    "main.91555f1e.js.map": "/EurobotCalculator/static/js/main.91555f1e.js.map",
     "787.d87d9dc6.chunk.js.map": "/EurobotCalculator/static/js/787.d87d9dc6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6eb31bca.css",
-    "static/js/main.1ace82ca.js"
+    "static/css/main.4f461206.css",
+    "static/js/main.91555f1e.js"
   ]
 }
