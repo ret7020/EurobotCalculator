@@ -1,14 +1,62 @@
 import React, { useState } from "react";
 import "./App.css";
 
+function download_as_file(filename, data) {
+  const blob = new Blob([data], { type: "text/csv" });
+  if (window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveBlob(blob, filename);
+  } else {
+    const elem = window.document.createElement("a");
+    elem.href = window.URL.createObjectURL(blob);
+    elem.download = filename;
+    document.body.appendChild(elem);
+    elem.click();
+    document.body.removeChild(elem);
+  }
+}
+
 function App() {
+  const generate_report = () => {
+    let [real_points, bonus, final_points] = calculate_points();
+    let report = `Eurobot 2023 Report
+---------------
+Итоговые баллы: ${final_points}
+Баллы без бонуса: ${real_points}
+Размер бонуса: ${bonus}
+---------------
+Наличие корзины: ${basket * 5} points
+Счётчик корзины: ${counterWorks * 5} points
+Парковка роботов: ${correctParking * 15} points
+Весёлое действие: ${funnyActionPerformed * 5} points
+---------------
+Торты
+слои|легендарный рецепт|вишня cверху
+`;
+    let cakes_string = "";
+    let final_cakes = 0;
+    cakes.forEach((cake) => {
+      let curr_cake = cake.layers + cake.legend * 4 + cake.cherry_on_top * 3;
+      cakes_string += `${cake.layers} + ${cake.legend * 4} + ${
+        cake.cherry_on_top * 3
+      } = ${curr_cake}\n`;
+      final_cakes += curr_cake;
+    });
+    report += cakes_string + `Суммарно: ${final_cakes}`;
+    download_as_file("report.txt", report);
+  };
+
   const calculate_points = () => {
+    // Basic
     let real_points =
       parseInt(cherriesInsideBasket) +
       basket * 5 +
       counterWorks * 5 +
       correctParking * 15 +
       funnyActionPerformed * 5;
+    // Cakes
+    cakes.forEach((cake) => {
+      real_points += calculate_cake(cake);
+    });
     let bonus = 20 - Math.abs(real_points - parseInt(prediction));
     if (bonus < 0) bonus = 0;
     return [real_points, bonus, real_points + bonus];
@@ -79,8 +127,14 @@ function App() {
             >
               Правила
             </a>
-            <button type="button" className="btn btn-danger">
-              Отчистить форму
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => {
+                generate_report();
+              }}
+            >
+              Отчёт
             </button>
           </div>
         </div>
@@ -150,11 +204,14 @@ function App() {
                       >
                         +
                       </span>
-                      <span class="badge bg-danger rounded-pill delete-cake-btn" onClick={() => {
-                        let tmp = [...cakes];
-                        tmp.splice(index, 1);
-                        SetCakes([...tmp]);
-                      }}>
+                      <span
+                        class="badge bg-danger rounded-pill delete-cake-btn"
+                        onClick={() => {
+                          let tmp = [...cakes];
+                          tmp.splice(index, 1);
+                          SetCakes([...tmp]);
+                        }}
+                      >
                         -
                       </span>
                     </li>
