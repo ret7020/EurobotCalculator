@@ -13,6 +13,10 @@ function App() {
     if (bonus < 0) bonus = 0;
     return [real_points, bonus, real_points + bonus];
   };
+  const calculate_cake = (cake) => {
+    return cake.layers + cake.legend * 4 + cake.cherry_on_top * 3;
+  };
+
   const [fines_selected, setSelectedFines] = useState([]);
   const fines_list = [
     { title: "Часть робота упала на поле", points: 20, id: 0 },
@@ -43,9 +47,11 @@ function App() {
 
   // Cakes pool
   const [cakes, SetCakes] = useState([]);
+  // Saved
+
   // Cake example
   /* {
-    "layers_cnt": int,
+    "layers": int,
     "legend": bool,
     "cherry_on_top": bool,
   }
@@ -108,21 +114,52 @@ function App() {
             <div className="mb-3">
               <label className="form-label">Собранные торты </label>
               <div>
-                {cakes.map((cake) => (
-                  <div>
-                    {cake.layers}
-                  </div>
-                ))}
-              </div>
-              <div>
                 <button
                   type="button"
-                  className="btn btn-primary btn-sm"
+                  className="btn btn-primary btn-sm mb-2"
                   data-bs-toggle="modal"
                   data-bs-target="#addCake"
                 >
                   Добавить торт
                 </button>
+              </div>
+
+              <div>
+                <ol class="list-group list-group-numbered">
+                  {cakes.map((cake, index) => (
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-start"
+                      key={index}
+                    >
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">
+                          Торт - {cake.layers}{" "}
+                          {cake.layers == 1 ? "слой" : "слоя"}
+                        </div>
+                        {cake.legend ? "Легендарный" : "Обычный"}{" "}
+                        {cake.cherry_on_top ? "с вишней" : "без вишни"}
+                      </div>
+                      <span class="badge bg-primary rounded-pill">
+                        {calculate_cake(cake)}
+                      </span>
+                      <span
+                        class="badge bg-success rounded-pill delete-cake-btn"
+                        onClick={() => {
+                          SetCakes([...cakes, cake]);
+                        }}
+                      >
+                        +
+                      </span>
+                      <span class="badge bg-danger rounded-pill delete-cake-btn" onClick={() => {
+                        let tmp = [...cakes];
+                        tmp.splice(index, 1);
+                        SetCakes([...tmp]);
+                      }}>
+                        -
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </div>
 
@@ -333,7 +370,8 @@ function App() {
                   <span id="points_without_bonus">{calculate_points()[0]}</span>
                 </label>
                 <label className="form-check-label black">
-                  Бонус: <span id="points_with_bonus">{calculate_points()[1]}</span>
+                  Бонус:{" "}
+                  <span id="points_with_bonus">{calculate_points()[1]}</span>
                 </label>
                 <label className="form-check-label black">
                   Итого: <span id="points_final">{calculate_points()[2]}</span>
@@ -441,7 +479,8 @@ function App() {
                     }}
                   />
                   <div id="cakes_cnt" className="form-text">
-                    Если собрано несколько тортов с такой же конфигурацией, то вы можете сразу добавить их все. 
+                    Если собрано несколько тортов с такой же конфигурацией, то
+                    вы можете сразу добавить их все.
                   </div>
                 </div>
               </div>
@@ -450,8 +489,13 @@ function App() {
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => {
-                    SetCakes([...cakes, {layers: layersCnt, legend: legendaryBuild, cherry_on_top: cherryOnTop}]);
-                    
+                    let cakes_buffer = Array(parseInt(cakesCnt)).fill({
+                      layers: parseInt(layersCnt),
+                      legend: legendaryBuild,
+                      cherry_on_top: cherryOnTop,
+                    });
+                    console.log(cakes_buffer);
+                    SetCakes([...cakes, ...cakes_buffer]);
                   }}
                   data-bs-dismiss="modal"
                 >

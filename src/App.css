@@ -25,3 +25,7 @@ label.black {
 .pointer {
   cursor: pointer;
 }
+.delete-cake-btn {
+  margin-left: 5px;
+  cursor: pointer;
+}
