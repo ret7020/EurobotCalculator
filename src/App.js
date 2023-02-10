@@ -26,12 +26,30 @@ function App() {
     { title: "Движение робота после окончания матча", points: 50, id: 4 },
     { title: "Черезмерное время подготовки", points: 50, id: 5 },
   ];
+
+  // Global input
   const [cherriesInsideBasket, setCherriesInsideBasket] = useState(0);
   const [prediction, SetPrediction] = useState(0);
   const [basket, setBasket] = useState(false);
   const [counterWorks, setCounterWorks] = useState(false);
   const [correctParking, setCorrectParking] = useState(false);
   const [funnyActionPerformed, setFunnyActionPerformed] = useState(false);
+
+  // For Cake
+  const [layersCnt, SetLayersCnt] = useState(1);
+  const [legendaryBuild, SetLegendaryBuild] = useState(false);
+  const [cherryOnTop, SetCherryOnTop] = useState(false);
+  const [cakesCnt, SetCakesCnt] = useState(1);
+
+  // Cakes pool
+  const [cakes, SetCakes] = useState([]);
+  // Cake example
+  /* {
+    "layers_cnt": int,
+    "legend": bool,
+    "cherry_on_top": bool,
+  }
+  */
 
   return (
     <>
@@ -89,6 +107,13 @@ function App() {
 
             <div className="mb-3">
               <label className="form-label">Собранные торты </label>
+              <div>
+                {cakes.map((cake) => (
+                  <div>
+                    {cake.layers}
+                  </div>
+                ))}
+              </div>
               <div>
                 <button
                   type="button"
@@ -345,9 +370,12 @@ function App() {
                     className="form-control"
                     id="layers_cnt"
                     aria-describedby="layers_cnt"
-                    min={0}
+                    min={1}
                     max={3}
-                    data-points-coeff="1"
+                    value={layersCnt}
+                    onChange={(e) => {
+                      SetLayersCnt(e.target.value);
+                    }}
                   />
                   <div id="layers_cnt" className="form-text">
                     Количество слоёв в торте (<b>1 pnt</b>)
@@ -359,10 +387,9 @@ function App() {
                     type="checkbox"
                     className="form-check-input"
                     id="legendary"
-                    data-points="5"
-                    value={funnyActionPerformed}
+                    value={legendaryBuild}
                     onChange={(e) => {
-                      setFunnyActionPerformed(e.target.checked);
+                      SetLegendaryBuild(e.target.checked);
                     }}
                   />
                   <label
@@ -381,10 +408,9 @@ function App() {
                     type="checkbox"
                     className="form-check-input"
                     id="cherry_placed"
-                    data-points="5"
-                    value={funnyActionPerformed}
+                    value={cherryOnTop}
                     onChange={(e) => {
-                      setFunnyActionPerformed(e.target.checked);
+                      SetCherryOnTop(e.target.checked);
                     }}
                   />
                   <label
@@ -397,12 +423,36 @@ function App() {
                     На верхнем слое торта есть вишенка(<b>3 pnt</b>)
                   </div>
                 </div>
+
+                <div className="mb-3 form-check">
+                  <label htmlFor="cakes_cnt" className="form-label text-body">
+                    Количество таких тортов
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="cakes_cnt"
+                    aria-describedby="cakes_cnt"
+                    min={1}
+                    max={20}
+                    value={cakesCnt}
+                    onChange={(e) => {
+                      SetCakesCnt(e.target.value);
+                    }}
+                  />
+                  <div id="cakes_cnt" className="form-text">
+                    Если собрано несколько тортов с такой же конфигурацией, то вы можете сразу добавить их все. 
+                  </div>
+                </div>
               </div>
               <div className="modal-footer">
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick=""
+                  onClick={(e) => {
+                    SetCakes([...cakes, {layers: layersCnt, legend: legendaryBuild, cherry_on_top: cherryOnTop}]);
+                    
+                  }}
                   data-bs-dismiss="modal"
                 >
                   Добавить
