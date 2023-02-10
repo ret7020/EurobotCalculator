@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const calculate_points = (with_bonus = false) => {
-    return (
+  const calculate_points = () => {
+    let real_points =
       parseInt(cherriesInsideBasket) +
       basket * 5 +
       counterWorks * 5 +
       correctParking * 15 +
-      funnyActionPerformed * 5
-    );
+      funnyActionPerformed * 5;
+    let bonus = 20 - Math.abs(real_points - parseInt(prediction));
+    if (bonus < 0) bonus = 0;
+    return [real_points, bonus, real_points + bonus];
   };
   const [fines_selected, setSelectedFines] = useState([]);
   const fines_list = [
@@ -303,13 +305,13 @@ function App() {
               <div className="row">
                 <label className="form-check-label black">
                   Без бонуса:{" "}
-                  <span id="points_without_bonus">{calculate_points()}</span>
+                  <span id="points_without_bonus">{calculate_points()[0]}</span>
                 </label>
                 <label className="form-check-label black">
-                  Бонус: <span id="points_with_bonus">0</span>
+                  Бонус: <span id="points_with_bonus">{calculate_points()[1]}</span>
                 </label>
                 <label className="form-check-label black">
-                  Итого: <span id="points_final">0</span>
+                  Итого: <span id="points_final">{calculate_points()[2]}</span>
                 </label>
               </div>
             </div>
