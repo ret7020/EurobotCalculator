@@ -51,7 +51,7 @@ function App() {
       final_fine += fines_list[fine_id].points;
     });
     SetFineValue(final_fine);
-  }
+  };
 
   const calculate_points = () => {
     // Basic
@@ -67,7 +67,7 @@ function App() {
     });
     let bonus = 20 - Math.abs(real_points - parseInt(prediction));
     if (bonus < 0) bonus = 0;
-    return [real_points, bonus, real_points + bonus];
+    return [real_points, bonus, real_points + bonus + 1 - fineValue]; // final + 1; bonus for non forfeit team
   };
   const calculate_cake = (cake) => {
     return cake.layers + cake.legend * 4 + cake.cherry_on_top * 3;
@@ -77,15 +77,15 @@ function App() {
   const [fineValue, SetFineValue] = useState(0);
 
   const fines_list = [
-    { title: "Часть робота упала на поле", points: 20},
-    { title: "Ухудшение поля или игровых элементов", points: 30},
+    { title: "Часть робота упала на поле", points: 20 },
+    { title: "Ухудшение поля или игровых элементов", points: 30 },
     {
       title: "Нерабочая система предотвращения столкновений",
       points: 30,
     },
-    { title: "Некорректный старт", points: 50},
-    { title: "Движение робота после окончания матча", points: 50},
-    { title: "Черезмерное время подготовки", points: 50},
+    { title: "Некорректный старт", points: 50 },
+    { title: "Движение робота после окончания матча", points: 50 },
+    { title: "Черезмерное время подготовки", points: 50 },
   ];
 
   // Global input
@@ -160,7 +160,9 @@ function App() {
                 aria-describedby="fineHelp"
                 value={fineValue}
                 min={0}
-                onChange={(e) => {SetFineValue(e.target.value)}}
+                onChange={(e) => {
+                  SetFineValue(e.target.value);
+                }}
               />
               <div id="fineHelp" className="form-text">
                 Количество штрафных очков (
@@ -199,25 +201,25 @@ function App() {
               </div>
 
               <div>
-                <ol class="list-group list-group-numbered">
+                <ol className="list-group list-group-numbered">
                   {cakes.map((cake, index) => (
                     <li
-                      class="list-group-item d-flex justify-content-between align-items-start"
+                      className="list-group-item d-flex justify-content-between align-items-start"
                       key={index}
                     >
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">
+                      <div className="ms-2 me-auto">
+                        <div className="fw-bold">
                           Торт - {cake.layers}{" "}
                           {cake.layers == 1 ? "слой" : "слоя"}
                         </div>
                         {cake.legend ? "Легендарный" : "Обычный"}{" "}
                         {cake.cherry_on_top ? "с вишней" : "без вишни"}
                       </div>
-                      <span class="badge bg-primary rounded-pill">
+                      <span className="badge bg-primary rounded-pill">
                         {calculate_cake(cake)}
                       </span>
                       <span
-                        class="badge bg-success rounded-pill delete-cake-btn"
+                        className="badge bg-success rounded-pill delete-cake-btn"
                         onClick={() => {
                           SetCakes([...cakes, cake]);
                         }}
@@ -225,7 +227,7 @@ function App() {
                         +
                       </span>
                       <span
-                        class="badge bg-danger rounded-pill delete-cake-btn"
+                        className="badge bg-danger rounded-pill delete-cake-btn"
                         onClick={() => {
                           let tmp = [...cakes];
                           tmp.splice(index, 1);
@@ -241,7 +243,7 @@ function App() {
             </div>
 
             <div className="mb-3">
-              <label for="correctCakesHelp" className="form-label">
+              <label htmlFor="correctCakesHelp" className="form-label">
                 Количество вишенок в корзине
               </label>
               <input
@@ -261,7 +263,7 @@ function App() {
             </div>
 
             <div className="mb-3">
-              <label for="correctCakesHelp" className="form-label">
+              <label htmlFor="correctCakesHelp" className="form-label">
                 Прогноз
               </label>
               <input
@@ -280,7 +282,7 @@ function App() {
             </div>
           </div>
           <div className="col col-lg-5 mx-auto">
-            <label for="correctCakesHelp" className="form-label">
+            <label htmlFor="correctCakesHelp" className="form-label">
               True/False
             </label>
             <div className="mb-3 form-check">
@@ -294,7 +296,7 @@ function App() {
                   setBasket(e.target.checked);
                 }}
               />
-              <label className="form-check-label" for="basketPlaced">
+              <label className="form-check-label" htmlFor="basketPlaced">
                 У команды есть корзина
               </label>
               <div id="basketPlaced" className="form-text">
@@ -313,7 +315,7 @@ function App() {
                   setCounterWorks(e.target.checked);
                 }}
               />
-              <label className="form-check-label" for="backetCounterWorks">
+              <label className="form-check-label" htmlFor="backetCounterWorks">
                 Счётчик корзины правильно работает
               </label>
               <div id="backetCounterWorks" className="form-text">
@@ -332,7 +334,7 @@ function App() {
                   setCorrectParking(e.target.checked);
                 }}
               />
-              <label className="form-check-label" for="robotsReturn">
+              <label className="form-check-label" htmlFor="robotsReturn">
                 Роботы правильно вернулись
               </label>
               <div id="robotsReturn" className="form-text">
@@ -350,7 +352,7 @@ function App() {
                   setFunnyActionPerformed(e.target.checked);
                 }}
               />
-              <label className="form-check-label" for="finalActionDone">
+              <label className="form-check-label" htmlFor="finalActionDone">
                 Весёлое действие
               </label>
               <div id="finalActionDone" className="form-text">
@@ -396,7 +398,7 @@ function App() {
                           var index = tmp.indexOf(item_id);
                           if (index !== -1) {
                             tmp.splice(index, 1);
-                            setSelectedFines([...tmp])
+                            setSelectedFines([...tmp]);
                           }
                         }
                       }}
@@ -413,14 +415,15 @@ function App() {
                     </div>
                   </div>
                 ))}
-
               </form>
             </div>
             <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => {apply_fines()}}
+                onClick={() => {
+                  apply_fines();
+                }}
                 data-bs-dismiss="modal"
               >
                 Добавить
@@ -453,10 +456,18 @@ function App() {
                 </label>
                 <label className="form-check-label black">
                   Бонус:{" "}
-                  <span id="points_with_bonus">{calculate_points()[1]}</span>
+                  <span id="points_with_bonus">
+                    {calculate_points()[1]} + 1
+                  </span>
                 </label>
+
                 <label className="form-check-label black">
-                  Итого: <span id="points_final">{calculate_points()[2]}</span>
+                  Штраф: <span id="points_with_bonus">{fineValue}</span>
+                </label>
+
+                <label className="form-check-label black">
+                  Итого:{" "}
+                  <strong id="points_final">{calculate_points()[2]}</strong>
                 </label>
               </div>
             </div>
@@ -576,7 +587,6 @@ function App() {
                       legend: legendaryBuild,
                       cherry_on_top: cherryOnTop,
                     });
-                    console.log(cakes_buffer);
                     SetCakes([...cakes, ...cakes_buffer]);
                   }}
                   data-bs-dismiss="modal"
