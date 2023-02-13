@@ -45,6 +45,14 @@ function App() {
     download_as_file("report.txt", report);
   };
 
+  const apply_fines = () => {
+    let final_fine = 0;
+    fines_selected.forEach((fine_id) => {
+      final_fine += fines_list[fine_id].points;
+    });
+    SetFineValue(final_fine);
+  }
+
   const calculate_points = () => {
     // Basic
     let real_points =
@@ -66,17 +74,18 @@ function App() {
   };
 
   const [fines_selected, setSelectedFines] = useState([]);
+  const [fineValue, SetFineValue] = useState(0);
+
   const fines_list = [
-    { title: "Часть робота упала на поле", points: 20, id: 0 },
-    { title: "Ухудшение поля или игровых элементов", points: 30, id: 1 },
+    { title: "Часть робота упала на поле", points: 20},
+    { title: "Ухудшение поля или игровых элементов", points: 30},
     {
       title: "Нерабочая система предотвращения столкновений",
       points: 30,
-      id: 2,
     },
-    { title: "Некорректный старт", points: 50, id: 3 },
-    { title: "Движение робота после окончания матча", points: 50, id: 4 },
-    { title: "Черезмерное время подготовки", points: 50, id: 5 },
+    { title: "Некорректный старт", points: 50},
+    { title: "Движение робота после окончания матча", points: 50},
+    { title: "Черезмерное время подготовки", points: 50},
   ];
 
   // Global input
@@ -149,8 +158,9 @@ function App() {
                 className="form-control"
                 id="fine_points_cnt"
                 aria-describedby="fineHelp"
-                value="0"
-                data-points-coeff="1"
+                value={fineValue}
+                min={0}
+                onChange={(e) => {SetFineValue(e.target.value)}}
               />
               <div id="fineHelp" className="form-text">
                 Количество штрафных очков (
@@ -171,10 +181,20 @@ function App() {
                 <button
                   type="button"
                   className="btn btn-primary btn-sm mb-2"
+                  style={{ marginRight: 10 }}
                   data-bs-toggle="modal"
                   data-bs-target="#addCake"
                 >
                   Добавить торт
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger btn-sm mb-2"
+                  onClick={(e) => {
+                    SetCakes([]);
+                  }}
+                >
+                  Удалить все торты
                 </button>
               </div>
 
@@ -339,7 +359,7 @@ function App() {
             </div>
           </div>
           <div className="col col-lg-5 mx-auto">
-            <span className="text-secondary ">
+            <span className="text-secondary">
               Coded with ReactJS by RobotX team
             </span>
           </div>
@@ -358,26 +378,33 @@ function App() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="fineSelectModalLabel">
-                Выбор штрафов
+                Выбор штрафов {fines_selected.length}
               </h5>
             </div>
             <div className="modal-body">
               <form id="fines_select_form">
-                {fines_list.map((item) => (
-                  <div className="mb-3 form-check" key={item.id}>
+                {fines_list.map((item, item_id) => (
+                  <div className="mb-3 form-check" key={item_id}>
                     <input
                       type="checkbox"
                       className="form-check-input"
                       onChange={(e) => {
                         if (e.target.checked) {
-                          setSelectedFines([...fines_selected, item.id]);
+                          setSelectedFines([...fines_selected, item_id]);
+                        } else {
+                          let tmp = [...fines_selected];
+                          var index = tmp.indexOf(item_id);
+                          if (index !== -1) {
+                            tmp.splice(index, 1);
+                            setSelectedFines([...tmp])
+                          }
                         }
                       }}
-                      id={`fine_${item.id}`}
+                      id={`fine_${item_id}`}
                     />
                     <label
                       className="form-check-label black"
-                      htmlFor={`fine_${item.id}`}
+                      htmlFor={`fine_${item_id}`}
                     >
                       {item.title}
                     </label>
@@ -387,18 +414,16 @@ function App() {
                   </div>
                 ))}
 
-                <label className="form-check-label black">Итого: </label>
-                <span id="fine_points_cnt_preview">0</span>
               </form>
             </div>
             <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick="apply_fines()"
+                onClick={() => {apply_fines()}}
                 data-bs-dismiss="modal"
               >
-                Применить
+                Добавить
               </button>
             </div>
           </div>
