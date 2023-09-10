@@ -18,19 +18,14 @@ function download_as_file(filename, data) {
 function App() {
   const generate_report = () => {
     let [real_points, bonus, final_points] = calculate_points();
-    let report = `Eurobot 2023 Report
+    let report = `Eurobot 2024: Farming Mars Report
 ---------------
 Итоговые баллы: ${final_points}
 Баллы без бонуса: ${real_points}
 Размер бонуса: ${bonus}
 ---------------
-Наличие корзины: ${basket * 5} points
-Счётчик корзины: ${counterWorks * 5} points
-Парковка роботов: ${correctParking * 15} points
-Весёлое действие: ${funnyActionPerformed * 5} points
 ---------------
-Торты
-слои|легендарный рецепт|вишня cверху
+
 `;
     let cakes_string = "";
     let final_cakes = 0;
@@ -117,7 +112,7 @@ function App() {
   return (
     <>
       <div className="container">
-        <h1 className="text-center mt-2">Eurobot 2023 Calculator</h1>
+        <h1 className="text-center mt-2 mb-3">Eurobot 2024 - Farming Mars</h1>
         <div className="text-center mb-4">
           <div className="btn-group">
             <button
@@ -130,7 +125,7 @@ function App() {
             </button>
             <a
               className="btn btn-light"
-              href="https://www.coupederobotique.fr/wp-content/uploads/Eurobot2023_Rules_EN_FINALE.pdf"
+              href="https://www.coupederobotique.fr/wp-content/uploads/Eurobot2024_Rules_CUP_EN.pdf"
               target="__blank"
               role="button"
             >
@@ -362,7 +357,7 @@ function App() {
           </div>
           <div className="col col-lg-5 mx-auto">
             <span className="text-secondary">
-              Coded with ReactJS by RobotX team
+              by RobotX team
             </span>
           </div>
         </form>
